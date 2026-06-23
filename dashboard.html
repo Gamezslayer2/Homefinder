@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Landlord Dashboard | HomeFinder Kenya</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🏠 HomeFinder Kenya</div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="post-vacancy.html">Post Vacancy</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" style="height:40vh;">
+    <div class="hero-content">
+        <h1>Landlord Dashboard</h1>
+        <p>Manage your rental vacancies and property listings.</p>
+    </div>
+</section>
+
+<section class="dashboard">
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+            <h3>Total Properties</h3>
+            <h2 id="totalProperties">0</h2>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Available Vacancies</h3>
+            <h2 id="availableProperties">0</h2>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Rented Properties</h3>
+            <h2 id="rentedProperties">0</h2>
+        </div>
+
+    </div>
+
+    <h2 class="section-title">
+        My Property Listings
+    </h2>
+
+    <div id="dashboardListings" class="listings">
+
+    </div>
+
+</section>
+
+<footer>
+    <p>
+        © 2026 HomeFinder Kenya. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+function loadDashboard() {
+
+    const vacancies =
+    JSON.parse(
+        localStorage.getItem("vacancies")
+    ) || [];
+
+    const container =
+    document.getElementById(
+        "dashboardListings"
+    );
+
+    const totalProperties =
+    document.getElementById(
+        "totalProperties"
+    );
+
+    const availableProperties =
+    document.getElementById(
+        "availableProperties"
+    );
+
+    const rentedProperties =
+    document.getElementById(
+        "rentedProperties"
+    );
+
+    totalProperties.textContent =
+    vacancies.length;
+
+    availableProperties.textContent =
+    vacancies.length;
+
+    rentedProperties.textContent = 0;
+
+    container.innerHTML = "";
+
+    if(vacancies.length === 0){
+
+        container.innerHTML = `
+        <h3 style="
+        text-align:center;
+        width:100%;
+        ">
+        No properties posted yet.
+        </h3>
+        `;
+
+        return;
+    }
+
+    vacancies.forEach((vacancy,index)=>{
+
+        container.innerHTML += `
+        <div class="card">
+
+            <img src="
+            https://picsum.photos/400/250?random=${index+50}
+            " alt="Property">
+
+            <div class="card-content">
+
+                <h3>${vacancy.title}</h3>
+
+                <p class="price">
+                    KSh ${Number(vacancy.rent).toLocaleString()}
+                </p>
+
+                <p class="deposit">
+                    Deposit:
+                    KSh ${Number(vacancy.deposit).toLocaleString()}
+                </p>
+
+                <p class="location">
+                    📍 ${vacancy.location}
+                </p>
+
+                <button
+                onclick="deleteProperty(${index})"
+                style="
+                background:red;
+                color:white;
+                border:none;
+                padding:10px 15px;
+                margin-top:10px;
+                border-radius:5px;
+                cursor:pointer;
+                ">
+                Delete
+                </button>
+
+            </div>
+
+        </div>
+        `;
+    });
+}
+
+function deleteProperty(index){
+
+    let vacancies =
+    JSON.parse(
+        localStorage.getItem("vacancies")
+    ) || [];
+
+    vacancies.splice(index,1);
+
+    localStorage.setItem(
+        "vacancies",
+        JSON.stringify(vacancies)
+    );
+
+    loadDashboard();
+}
+
+window.onload = loadDashboard;
+</script>
+
+</body>
+</html>

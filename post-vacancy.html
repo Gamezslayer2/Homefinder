@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Post Vacancy | Karibu Nyumbani Kenya</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🏠 Karibu Nyumbani Kenya</div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="post-vacancy.html">Post Vacancy</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" style="height:40vh;">
+    <div class="hero-content">
+        <h1>Post a Rental Vacancy</h1>
+        <p>Reach thousands of potential tenants across Kenya.</p>
+    </div>
+</section>
+
+<section style="padding:40px 5%;">
+
+<form id="vacancyForm">
+
+    <h2>Property Information</h2>
+
+    <input
+        type="text"
+        id="title"
+        placeholder="Property Title"
+        required
+    >
+
+    <select id="type" required>
+        <option value="">Select House Type</option>
+        <option>Bedsitter</option>
+        <option>Studio</option>
+        <option>1 Bedroom</option>
+        <option>2 Bedroom</option>
+        <option>3 Bedroom</option>
+        <option>4 Bedroom</option>
+        <option>Maisonette</option>
+    </select>
+
+    <input
+        type="number"
+        id="rent"
+        placeholder="Monthly Rent (KSh)"
+        required
+    >
+
+    <input
+        type="number"
+        id="deposit"
+        placeholder="Deposit Fee (KSh)"
+        required
+    >
+
+    <input
+        type="text"
+        id="location"
+        placeholder="Location (Town / Estate)"
+        required
+    >
+
+    <textarea
+        id="description"
+        placeholder="Describe the property..."
+        required
+    ></textarea>
+
+    <input
+        type="tel"
+        id="phone"
+        placeholder="Landlord Phone Number"
+        required
+    >
+
+    <input
+        type="file"
+        id="images"
+        accept="image/*"
+        multiple
+    >
+
+    <button type="submit">
+        Publish Vacancy
+    </button>
+
+</form>
+
+</section>
+
+<footer>
+    <p>
+        © 2026 Karibu Nyumbani Kenya. All Rights Reserved.
+    </p>
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
